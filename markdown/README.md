@@ -141,3 +141,10 @@ A --> C(Round Rect)
 B --> D{Rhombus}
 C --> D
 ```
+
+
+​```go
+func main() {
+
+}
+```
