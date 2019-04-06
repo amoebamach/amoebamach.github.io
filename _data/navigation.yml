@@ -1,18 +1,18 @@
 header:
   - title:      Home
-    url:        https://github.com/amoebamach/amoebamach.github.io/test/
+    url:        /test/
   - title:      Docs
-    url:        https://github.com/amoebamach/amoebamach.github.io/docs/en/quick-start
+    url:        /quick-start
     key:        docs
   - title:      Samples
-    url:        https://github.com/amoebamach/amoebamach.github.io/samples.html
+    url:        /samples.html
     key:        samples
   - title:      Archive
-    url:        https://github.com/amoebamach/amoebamach.github.io/archive.html
+    url:        /archive.html
   - title:      About
-    url:        https://github.com/amoebamach/amoebamach.github.io/about.html
+    url:        /about.html
   - title:      GitHub
-    url:        https://github.com/amoebamach/amoebamach.github.io
+    url:        /test
 
 
   - titles:
