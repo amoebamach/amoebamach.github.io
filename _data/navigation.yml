@@ -1,58 +1,50 @@
 header:
-  - title:      Start
-    children:
-      - title:  Quick Start
-        url:    /docs/en/quick-start
-      - title:  Structure
-        url:    /docs/en/structure
-      - title:  Update from 1.x to 2.x
-        url:    /docs/en/update-from-1-to-2
-  - title:      Customization
-    children:
-      - title:  Configuration
-        url:    /docs/en/configuration
-      - title:  Navigation
-        url:    /docs/en/navigation
-      - title:  Layouts
-        url:    /docs/en/layouts
-      - title:  Logo and Favicon
-        url:    /docs/en/logo-and-favicon
-      - title:  Authors
-        url:    /docs/en/authors
-      - title:  Internationalization
-        url:    /docs/en/i18n
-  - title:      Content
-    children:
-      - title:  Writing Posts
-        url:    /docs/en/writing-posts
-      - title:  Additional Styles
-        url:    /docs/en/additional-styles
-      - title:  Extensions
-        url:    /docs/en/extensions
-      - title:  Markdown Enhancements
-        url:    /docs/en/markdown-enhancements
-  - title:      Extra
-    children:
-      - title:  Spacing
-        url:    /docs/en/spacing
-      - title:  Grid
-        url:    /docs/en/grid
-      - title:  Icons
-        url:    /docs/en/icons
-      - title:  Image
-        url:    /docs/en/image
-      - title:  Button
-        url:    /docs/en/button
-      - title:  Item
-        url:    /docs/en/item
-      - title:  Card
-        url:    /docs/en/card
-      - title:  Hero
-        url:    /docs/en/hero
-      - title:  Swiper
-        url:    /docs/en/swiper
-  - title:      Languages
-    children:
-      - title:  中文
-        url:    /docs/zh/quick-start
+  - title:      Home
+    url:        /test/
+  - title:      Docs
+    url:        /quick-start
+    key:        docs
+  - title:      Samples
+    url:        /samples.html
+    key:        samples
+  - title:      Archive
+    url:        /archive.html
+  - title:      About
+    url:        /about.html
+  - title:      GitHub
+    url:        /test
 
+
+  - titles:
+      en      : &EN       Archive
+      en-GB   : *EN
+      en-US   : *EN
+      en-CA   : *EN
+      en-AU   : *EN
+      zh-Hans : &ZH_HANS  归档
+      zh      : *ZH_HANS
+      zh-CN   : *ZH_HANS
+      zh-SG   : *ZH_HANS
+      zh-Hant : &ZH_HANT  歸檔
+      zh-TW   : *ZH_HANT
+      zh-HK   : *ZH_HANT
+      ko      : &KO       아카이브
+      ko-KR   : *KO
+    url: /archive.html
+
+  - titles:
+      en      : &EN       About
+      en-GB   : *EN
+      en-US   : *EN
+      en-CA   : *EN
+      en-AU   : *EN
+      zh-Hans : &ZH_HANS  关于
+      zh      : *ZH_HANS
+      zh-CN   : *ZH_HANS
+      zh-SG   : *ZH_HANS
+      zh-Hant : &ZH_HANT  關於
+      zh-TW   : *ZH_HANT
+      zh-HK   : *ZH_HANT
+      ko      : &KO       소개
+      ko-KR   : *KO
+    url: /about.html
