@@ -1,6 +1,6 @@
 header:
   - title:      Home
-    url:        /test/
+    url:        /
   - title:      Docs
     url:        /docs/en/quick-start
     key:        docs
@@ -12,7 +12,7 @@ header:
   - title:      About
     url:        /about.html
   - title:      GitHub
-    url:        https://github.com/amoebamach/amoebamach.github.io/test
+    url:        https://github.com/amoebamach/amoebamach.github.io
 
 
 docs-en:
