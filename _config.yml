@@ -55,7 +55,7 @@ author:
 
 ## => GitHub Repository (if the site is hosted by GitHub)
 ##############################
-repository: amoebamach/amoebamach.github.io
+repository: amoebamach/amoebamach.github.io/docs
 repository_tree: master
 
 
@@ -195,7 +195,7 @@ exclude:
   - jekyll-text-theme.gemspec
   - package-lock.json
   - package.json
-  - /docs
+  ##- /docs
   - /node_modules
   - /screenshots
   ##- /test
