@@ -174,10 +174,119 @@ func sayHello(name string) <- chan string {
 ```
 
 ### select
-- select 문장은 communication이 재개될 때 까지 블록(block)
+- 아래 select 문장은 '채널에 입력'/'communication이 재개'될 때 까지 블록(block)
 ```go
 select {
-	case n :=
+	case n := <- foo:
+		fmt.Println("received from foo", n)
+	case m := <- bar:
+		fmt.Println("received from bar", n)
+	case <- time.After(10*time.Second)
+		fmt.Println("time out")
+}
+```
+***
+## Function & Closure
+### local variable escape
+```c++
+#include <string>
+#include <iostream>
+#include <functional>
+
+using namespace std;
+
+function<void()> numberPrinter(int x) {
+	return [&]() {
+		cout << "Printer: " << x << endl;
+	};
+}
+
+int main() {
+	numberPrinter(123)();
+}
+```
+
+### Hello World again
+go func()을 주의 깊게 보기 
+ ```go
+package main
+import "fmt"
+func main() {
+	ch := sayHello("World")
+	for str := range ch {
+			fmt.Println(str)
+	}
+}
+
+func sayHello(name string) <- chan string {
+	ch := make(chan string)
+	go func() {
+			defer close(ch)
+		
+			ch <- "hello"
+			ch <- name
+	}()
+	return ch
+}
+```
+
+***
+### struct
+- control over memory layout
+- value vs. pointer(reference)
+```go
+type Address struct {
+	Id int
+	Name string
+	Address struct {
+		City string
+		Post string
+	}
+}
+// 모든 모델에서 이러한 루틴을 구현
+func (s *Address) String string {
+	if s == nil {
+		return "N/A"
+	}
+	return fmt.Sprintf("Address Id = %d", s.Id)
+}
+```
+***
+### Method & Interface
+- Simple interfaces
+- Duck type
+
+```go
+// in package "fmt"
+type Stringer interface {
+	String() string
+}
+```
+### Interface and Type assertion
+- empty interface{} means any type
+```go
+func do(i interface{}) {
+	switch v := i.(type) {
+	case int:
+		fmt.Printf("Twice %v is %v\n", v, v*2)
+	case string:
+		fmt.Printf("%q is %v bytes long\n", v, len(v))
+	default:
+		fmt.Printf("I don't know about type %T!\n", v)
+	}
+}
+```
+***
+## Compiled to binary
+- Run fast
+- Compile fast
+- Deploy fase
+
+ 참고 : [go 언어 벤치마크](https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/go.html) 
+cf:
+c/gcc < Go < C# .Net <= Java << Python 3
+***
+
 
 Hi! I'm your **first Markdown** file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.
 
