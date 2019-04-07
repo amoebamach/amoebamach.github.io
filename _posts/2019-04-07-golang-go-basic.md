@@ -61,7 +61,7 @@ func sayHello(name string) <- chan string {
  
  ***
  
- ### 설계자
+### 설계자
      
       
 |  Designer | profile |
@@ -70,8 +70,9 @@ func sayHello(name string) <- chan string {
 | Rob Pike | Unix, Plan 9, UTF-8  |
 | Ken Thompson | Unix Plan 9, 8 language, UTF-8 |
 
-> [plan 9 ](https://en.wikipedia.org/wiki/List_of_Plan_9_applications)은 벨연구소에서 시도된 분산운영체제 프로젝트로 최근에는 좀 ... 하다. 분산운영체제는 참으로 어려운 영역이라고 생각한다.ㅎ~
-> [V8은 ](https://v8.dev/)구글이 만든 자바스크립트 엔진으로써, 크롬 브라우저에서 사용될 목적으로 제작되었고, 서버사이드에서 사용가능하게 확장되어 Node.js의 엔진으로 사용되고 있다. Mozilla의 [SpiderMonkey](https://developer.mozilla.org/ko/docs/SpiderMonkey)도 오픈소스 자바스크립트 엔진이다.
+> - [plan 9 ](https://en.wikipedia.org/wiki/List_of_Plan_9_applications)은 벨연구소에서 시도된 분산운영체제 프로젝트로 최근에는 좀 ... 하다. 분산운영체제는 참으로 어려운 영역이라고 생각한다.ㅎ~
+>
+> - [V8은 ](https://v8.dev/)구글이 만든 자바스크립트 엔진으로써, 크롬 브라우저에서 사용될 목적으로 제작되었고, 서버사이드에서 사용가능하게 확장되어 Node.js의 엔진으로 사용되고 있다. Mozilla의 [SpiderMonkey](https://developer.mozilla.org/ko/docs/SpiderMonkey)도 오픈소스 자바스크립트 엔진이다.
 
 ***
 
@@ -312,7 +313,7 @@ func do(i interface{}) {
 - Compile fast
 - Deploy fase
 
-- 참고 : [go 언어 벤치마크](https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/go.html) 
-- c/gcc < Go < C# .Net <= Java << Python 3
+> - 참고 : [go 언어 벤치마크](https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/go.html) 
+> - c/gcc < Go < C# .Net <= Java << Python 3
 
 ***
