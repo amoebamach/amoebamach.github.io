@@ -180,7 +180,9 @@ $ sudo tail -f /var/lib/mysql/mach-W650EH.log
 - MySQL 로그파일명은 각 사용자별로 다르니, 로그 파일 설정시 확인하기 바란다.
 ---
 ## 3. 테이블 생성 및 간단 CRUD
+
 ```go
+
 package main
 
 import (
@@ -220,8 +222,11 @@ func  main() {
 	// Delete - product를 삭제
 	db.Delete(&product)
 }
+
 ```
+
 MySQL의 쿼리 로그를 통한 결과 확인
+
 ```bash
 $ sudo tail -f /var/lib/mysql/mach-W650EH.log
 190502  0:12:07	   55 Connect	testuser@localhost as anonymous on testdb
@@ -259,8 +264,11 @@ $ sudo tail -f /var/lib/mysql/mach-W650EH.log
 
 
 ```
+
 mysql 콘솔에서 테이블 조회
+
 ```sql
+
 MariaDB [testdb]> select * from products;
 +----+---------------------+---------------------+---------------------+-------+-------+
 | id | created_at          | updated_at          | deleted_at          | code  | price |
@@ -270,7 +278,9 @@ MariaDB [testdb]> select * from products;
 1 row in set (0.00 sec)
 
 MariaDB [testdb]>
+
 ```
+
 - 전부 삭제했으나, 레코드가 여전히 존재하는 것처럼 보인다.
 - gORM은 실제 데이터를 삭제하지는 않고, 삭제 시간을 갱신해서 입력한다. 즉, deleted_at이 null 값이 아니라면, 데이터는 삭제된 것이다.
 - 이는 성능을 고려한 구현방법이다.(gorm에서 delete 구현은, 데이터베이스 연산 update로 구현한다. 이유는 성능때문이다. 고수의 테크닉이다.)
