@@ -181,6 +181,13 @@ $ sudo tail -f /var/lib/mysql/mach-W650EH.log
 ---
 ## 3. 테이블 생성 및 간단 CRUD
 
+
+아래에서는 테이블을 생성(Auto Migration)하고, 테이블에 레코드 CRUD 연산을 수행하는 예를 보인다.
+
+- 마이그레이션 방법
+- Delete 구현을 Update로 수행한 기법 이해
+- 간단 쿼리 수행 예제 이해
+
 ```go
 
 package main
