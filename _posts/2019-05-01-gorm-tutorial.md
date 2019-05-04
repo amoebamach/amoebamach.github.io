@@ -16,6 +16,14 @@ mermaid: true
 ---
 ## mariadb에 테스트 사용자 생성 및 권한부여
 
+본 문서에서 다루고자 하는 부분은 다음과 같다.
+- gORM에서 데이터베이스 생성
+- gORM에서 테이블 생성
+- gORM에서 간단한 SQL Query 수행
+
+> 이를 위해, 해당 테스트가 모두 가능한 MySQL 사용자를 생성하기로 한다.
+> root 사용자로 할 수 있으나, 이는 배제하기로 한다.
+
 #### 1) bash에서 root 사용자로 mysql root 사용자 접속
 ```bash
 sudo su -          # 리눅스 root 사용자 전환
@@ -71,14 +79,22 @@ go get -u github.com/jinzhu/gorm
 >mach@mach-W650EH:~$
 >```
 ---
+
 ## gORM 용 MySQL 드라이버 설치
+
+mysql, postgresql등 데이터베이스 별로 설치가 필요하다.
+
 ```bash
 go get github.com/go-sql-driver/mysql
 ```
+
 ---
 ## MySQL 쿼리 로그 설정
-- mysql 쿼리를 추적하기 위하여 로그를 설정
-```mysql
+- mysql 쿼리를 추적하기 위하여, MySQL 수준에서 수행되는 쿼리를 로그 파일로 출력하도록 설정
+- gorm은 GoLang에 치우친 데이터베이스 처리 구현을 보여주는데, 때떄로, 개발자는 실제 데이터베이스에서 어떤 명령어가 수행되는지 궁금한 경우가 있다.
+- 또는, 순수 데이터베이스 수준에서 쿼리를 튜닝을 하고 싶은 경우에도 수행되는 SQL 쿼리 및 수행시간을 추적하여, 분석/튜닝하는 용도로 사용할 경우가 있다.
+
+```sql
 MariaDB [(none)]> SET GLOBAL general_log = 1;
 Query OK, 0 rows affected (0.00 sec)
 
@@ -92,8 +108,17 @@ MariaDB [(none)]> SELECT @@log_output, @@general_log, @@general_log_file;
 
 MariaDB [(none)]>
 ```
+- 위처럼 설정한 경우, MySQL 서버는 자신이 수행한 명령을 로그 파일로 출력하게 되는데, 그 출력은 다음과 같이 확인한다.
+
+아래 처럼 수행해서 결과를 보이는 경우가 있다.(운영체제 및 mysql 환경설정 세팅에 따라 다르다)
 ```bash
 tail -f /var/log/mysql/mysql.log
+```
+
+아래 처럼 수행해서 결과를 보이는 경우가 있다.(운영체제 및 mysql 환경설정 세팅에 따라 다르다)
+아래에서 'mach-W650EH'은 컴퓨터 이름으로 개인별/장비별로 차이가 있을 수 있다.
+```bash
+sudo tail -f /var/lib/mysql/mach-W650EH.log
 ```
 
 ---
@@ -177,7 +202,13 @@ $ sudo tail -f /var/lib/mysql/mach-W650EH.log
 
 
 ```
-- MySQL 로그파일명은 각 사용자별로 다르니, 로그 파일 설정시 확인하기 바란다.
+
+- MySQL 로그파일명은 각 사용자별/장비별로 다르니, 위에서 설정한 MySQL 로그 파일 설정의 출력 내용을 확인하기 바란다.
+- 또는, 아래 명령을 MySQL 콘솔에서 실행하여 현재 설정을 알 수 있다.
+```sql
+ SELECT @@log_output, @@general_log, @@general_log_file;
+```
+
 ---
 ## 3. 테이블 생성 및 간단 CRUD
 
@@ -231,6 +262,14 @@ func  main() {
 }
 
 ```
+
+> 
+> 위에서 gORM 데이터베이스 연결 파라메터에서 시간대역을 지정하는 부분이 있다.
+> 보통, tz(time zone)을 사용한 경우를 많이 볼 수 있다. 과거에 주로 행하던 방법이다.
+> gORM에서는 이는 구현하고 있지 않다. 에러는 없겠으나, tz으로 기술하면, GMT(그리니치 민 타임, 즉, 영국 런던 시간)로 하드코딩으로 세팅해 버린다.
+>
+> loc를 사용하여, Asia/Seoul등으로, 제대로 시간대역을 세팅할 수 있을 것이다.
+
 
 MySQL의 쿼리 로그를 통한 결과 확인
 
@@ -291,5 +330,10 @@ MariaDB [testdb]>
 - 전부 삭제했으나, 레코드가 여전히 존재하는 것처럼 보인다.
 - gORM은 실제 데이터를 삭제하지는 않고, 삭제 시간을 갱신해서 입력한다. 즉, deleted_at이 null 값이 아니라면, 데이터는 삭제된 것이다.
 - 이는 성능을 고려한 구현방법이다.(gorm에서 delete 구현은, 데이터베이스 연산 update로 구현한다. 이유는 성능때문이다. 고수의 테크닉이다.)
-- gORM의 Auto Migration은 스키마를 생성하기만 한다. 테이블 생성, 신규 컬럼 추가, 신규 인덱스 추가를 하며, 기존 스키마를 변경(alter)하는 기능은 수행하지 않는다. 이 외의 기능은 별도 함수
+- gORM의 Auto Migration은 스키마를 생성하기만 한다. 테이블 생성, 신규 컬럼 추가, 신규 인덱스 추가를 하며, 기존 스키마를 변경(alter)하는 기능은 수행하지 않는다. 이 외의 기능은 별도 함수를 호출하여 달성해야 한다.
+
+## 결론
+간단하게, gORM 사용법을 알아보았다. 이는 gORM 전체 내용 중, 일부에 국한된다. 일부 기능으로도 다양한 기능을 구현할 수 있다. 
+보다 많은 정보는 gORM 홈페이지에서 찾아보기 바란다.
+
 
