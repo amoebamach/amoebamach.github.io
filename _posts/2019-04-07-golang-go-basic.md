@@ -316,5 +316,6 @@ func do(i interface{}) {
 
 > - 참고 : [go 언어 벤치마크](https://benchmarksgame-team.pages.debian.net/benchmarksgame/faster/go.html) 
 > - c/gcc < Go < C# .Net <= Java << Python 3
+> 오해가 있을까봐? 파이썬이 가장 느리다!
 
 ***
