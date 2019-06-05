@@ -9,21 +9,6 @@ mermaid: true
 > Go언어가 여러 분야에 사용되고 있지만, 그 "여러..."에 관한 글이 별로 보이지 않는다?
 > - 인터넷에서 이것 저것 찾아서 목록을 작성해 본다.
 ## Go사용회사 목록
- 1. Uber
- 2. Kubernetes
- 3. Etcd & Fleet
- 4. Deis
- 5. Flynn
- 6. Lime
- 7. Revel
- 8. InfluxDB
- 9. Syncthing
- 10. Gogs(Go Git Service)
-
-	- 2019.06.05. 현재 목록 
-
----
-## 목록에 대한 간단 정보 
 
 ### 1) Uber
 > Uber has written over a hundred services in Golang. Geobase one of the most recent Uber services written in Golang. It matches riders to drivers, sharding the matching across machines. In fact, Golang powers a majority of high QPS services at Uber. Uber datastore schemaless sharding layer was in Python. However as their business grew, so did their resource utilization and latencies. To keep Schemaless performant, they needed a solution that would execute well at scale. Thus they rewrote Schemaless’ fleet of Python worker nodes in Go.
